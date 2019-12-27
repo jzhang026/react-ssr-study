@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "webpack -w & nodemon --inspect server.js",
+    "start": "webpack -w --config config/webpack/webpack.config.js & nodemon --inspect build/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -25,7 +25,8 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "nodemon": "^1.12.5",
-    "webpack": "^3.10.0",
+    "webpack": "^4.41.4",
+    "webpack-cli": "^3.3.10",
     "webpack-node-externals": "^1.6.0"
   },
   "dependencies": {

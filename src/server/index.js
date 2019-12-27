@@ -10,7 +10,7 @@ const app = express()
 
 app.use(cors())
 
-app.use(express.static('public'))
+app.use(express.static('build'))
 
 app.get('*', (req,res,next) => {
   const activeRoute = routes.find((route)=> matchPath(req.url, route)) || {}

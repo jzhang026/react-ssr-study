@@ -1,3 +1,4 @@
 node_modules
 server.js
-public
+build
+*error.log

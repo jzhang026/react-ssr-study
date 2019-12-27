@@ -4,8 +4,9 @@ var nodeExternals = require('webpack-node-externals')
 
 var browserConfig = {
   entry: './src/browser/index.js',
+  mode: 'development',
   output: {
-    path: path.resolve(__dirname, 'public'),
+    path: path.resolve(__dirname, '../../build'),
     filename: 'bundle.js',
     publicPath: '/'
   },
@@ -24,9 +25,10 @@ var browserConfig = {
 var serverConfig = {
   entry: './src/server/index.js',
   target: 'node',
+  mode: 'development',
   externals: [nodeExternals()],
   output: {
-    path: __dirname,
+    path: path.resolve(__dirname, '../../build'),
     filename: 'server.js',
     publicPath: '/'
   },
