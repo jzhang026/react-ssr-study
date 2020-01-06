@@ -1,14 +1,15 @@
 var path = require('path')
 var webpack = require('webpack')
 var nodeExternals = require('webpack-node-externals')
-
+const paths = require('../paths');
 var browserConfig = {
+  name: 'client',
   entry: './src/browser/index.js',
   mode: 'development',
   output: {
-    path: path.resolve(__dirname, '../../build'),
+    path: paths.clientBuild,
     filename: 'bundle.js',
-    publicPath: '/'
+    publicPath: paths.publicPath
   },
   module: {
     rules: [
@@ -23,14 +24,15 @@ var browserConfig = {
 }
 
 var serverConfig = {
+  name: 'server',
   entry: './src/server/index.js',
   target: 'node',
   mode: 'development',
   externals: [nodeExternals()],
   output: {
-    path: path.resolve(__dirname, '../../build'),
+    path: paths.serverBuild,
     filename: 'server.js',
-    publicPath: '/'
+    publicPath: paths.publicPath
   },
   module: {
     rules: [

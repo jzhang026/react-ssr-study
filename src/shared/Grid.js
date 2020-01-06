@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import {testLog} from './utils'
 class Grid extends Component {
   constructor(props) {
     super(props)
@@ -15,6 +15,9 @@ class Grid extends Component {
       loading: !repos
     }
     this.fetchRepos = this.fetchRepos.bind(this)
+  }
+  componentWillMount() {
+    testLog()
   }
   componentDidMount() {
     if(!this.state.repos) {

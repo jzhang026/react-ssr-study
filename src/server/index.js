@@ -7,7 +7,9 @@ import serialize from 'serialize-javascript'
 import { matchPath, StaticRouter } from 'react-router-dom'
 import routes from '../shared/routes'
 const app = express()
-
+global.testLog = function() {
+  console.log('this the test log from server')
+}
 app.use(cors())
 
 app.use(express.static('build'))
