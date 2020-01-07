@@ -4,11 +4,13 @@ var nodeExternals = require('webpack-node-externals')
 const paths = require('../paths');
 var browserConfig = {
   name: 'client',
-  entry: './src/browser/index.js',
+  entry: {
+    bundle: ['./src/browser/index.js']
+  },
   mode: 'development',
   output: {
     path: paths.clientBuild,
-    filename: 'bundle.js',
+    filename: '[name].js',
     publicPath: paths.publicPath
   },
   module: {
@@ -45,7 +47,8 @@ var serverConfig = {
   plugins: [
     new webpack.DefinePlugin({
       __isBrowser__: "false"
-    })
+    }),
+    new webpack.HotModuleReplacementPlugin()
   ],
   stats: {
     colors: true

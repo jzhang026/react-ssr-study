@@ -9,10 +9,10 @@ export default function Navbar () {
     name: 'JavaScript',
     param: 'javascript',
   }, {
-    name: 'Ruby',
+    name: 'Ruby23',
     param: 'ruby',
   }, {
-    name: 'Python',
+    name: 'Python123',
     param: 'python',
   }, {
     name: 'Java',

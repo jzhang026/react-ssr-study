@@ -15,6 +15,10 @@ const start = async () => {
   rimraf.sync(paths.serverBuild);
   const multiCompiler = webpack(webpackConfig);
   const [clientconfig, serverConfig] = webpackConfig;
+  clientconfig.entry.bundle = [
+    ...clientconfig.entry.bundle,
+    'webpack-hot-middleware/client'
+  ]
   const clientCompiler = multiCompiler.compilers.find(compiler => compiler.name === 'client');
   const serverCompiler = multiCompiler.compilers.find(compiler => compiler.name === 'server');
   const clientCompilePromise = compilerPromise('client', clientCompiler, clientconfig);
@@ -27,6 +31,7 @@ const start = async () => {
     watchOptions: watchOptions,
     stats: clientconfig.stats
   }))
+  server.use(require("webpack-hot-middleware")(clientCompiler));
   server.listen(3001)
   // let serverApp;
   // server.use('*', (req, res) => {
@@ -41,7 +46,7 @@ const start = async () => {
       logMessage(error, 'error')
     }
     if (stats.hasErrors()) {
-      const info = stats.tpJson();
+      const info = stats.toJson();
       const errors = info.errors[0].split('\n');
       logMessage(errors[0], 'error');
       logMessage(errors[1], 'error');
