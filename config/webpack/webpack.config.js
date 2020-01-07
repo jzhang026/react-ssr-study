@@ -20,7 +20,10 @@ var browserConfig = {
     new webpack.DefinePlugin({
       __isBrowser__: "true"
     })
-  ]
+  ],
+  stats: {
+    colors: true
+  }
 }
 
 var serverConfig = {
@@ -43,7 +46,10 @@ var serverConfig = {
     new webpack.DefinePlugin({
       __isBrowser__: "false"
     })
-  ]
+  ],
+  stats: {
+    colors: true
+  }
 }
 
 module.exports = [browserConfig, serverConfig]

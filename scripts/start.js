@@ -17,14 +17,15 @@ const start = async () => {
   const [clientconfig, serverConfig] = webpackConfig;
   const clientCompiler = multiCompiler.compilers.find(compiler => compiler.name === 'client');
   const serverCompiler = multiCompiler.compilers.find(compiler => compiler.name === 'server');
-  const clientCompilePromise = compilerPromise(clientCompiler);
-  const serverCompilePromise = compilerPromise(serverCompiler);
+  const clientCompilePromise = compilerPromise('client', clientCompiler, clientconfig);
+  const serverCompilePromise = compilerPromise('server', serverCompiler, serverConfig);
   
   server.use('/static',express.static(paths.clientBuild))
   server.use(webpackDevMiddleware(clientCompiler, {
     logLevel: 'silent',
     publicPath: paths.publicPath,
     watchOptions: watchOptions,
+    stats: clientconfig.stats
   }))
   server.listen(3001)
   // let serverApp;
@@ -32,10 +33,10 @@ const start = async () => {
   //   serverApp(req, res)
   // })
   serverCompiler.watch(watchOptions, (error, stats) => {
-    if(!error && !stats.hasErrors()) {
-      console.log(stats.toString(serverConfig.stats))
-      return;
-    }
+    // if(!error && !stats.hasErrors()) {
+    //   console.log(stats.toString(serverConfig.stats))
+    //   return;
+    // }
     if(error) {
       logMessage(error, 'error')
     }
