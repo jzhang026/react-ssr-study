@@ -49,7 +49,7 @@ class Grid extends Component {
         <h3>{this.props.match.params.id}</h3>
       <ul style={{display: 'flex', flexWrap: 'wrap'}}>
         {repos.map(({ name, owner, stargazers_count, html_url }) => (
-          <li key={name} style={{margin: 25}}>
+          <li key={name} style={{margin: 25, color: 'black', fontSize: '20px'}}>
             <ul>
               <li><a href={html_url}>{name}</a></li>
               <li>@{owner.login}</li>
