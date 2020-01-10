@@ -15,7 +15,7 @@ export default function Navbar () {
     name: 'Python123',
     param: 'python',
   }, {
-    name: 'Java666',
+    name: 'Java666888',
     param: 'java',
   }]
 
