@@ -1,22 +1,21 @@
-var path = require('path')
-var webpack = require('webpack')
-var nodeExternals = require('webpack-node-externals')
-const paths = require('../paths');
+var path = require("path");
+var webpack = require("webpack");
+var nodeExternals = require("webpack-node-externals");
+const paths = require("../paths");
 var browserConfig = {
-  name: 'client',
+  name: "client",
   entry: {
-    bundle: ['./src/browser/index.js']
+    bundle: ["./src/browser/index.js"]
   },
-  mode: 'development',
+  mode: "development",
+  devtool: "cheap-eval-source-map",
   output: {
     path: paths.clientBuild,
-    filename: '[name].js',
+    filename: "[name].js",
     publicPath: paths.publicPath
   },
   module: {
-    rules: [
-      { test: /\.(js)$/, use: 'babel-loader' },
-    ]
+    rules: [{ test: /\.(js)$/, use: "babel-loader" }]
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -26,23 +25,22 @@ var browserConfig = {
   stats: {
     colors: true
   }
-}
+};
 
 var serverConfig = {
-  name: 'server',
-  entry: './src/server/index.js',
-  target: 'node',
-  mode: 'development',
+  name: "server",
+  entry: "./src/server/index.js",
+  target: "node",
+  mode: "development",
   externals: [nodeExternals()],
+  devtool: "cheap-eval-source-map",
   output: {
     path: paths.serverBuild,
-    filename: 'server.js',
+    filename: "server.js",
     publicPath: paths.publicPath
   },
   module: {
-    rules: [
-      { test: /\.(js)$/, use: 'babel-loader' }
-    ]
+    rules: [{ test: /\.(js)$/, use: "babel-loader" }]
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -53,6 +51,6 @@ var serverConfig = {
   stats: {
     colors: true
   }
-}
+};
 
-module.exports = [browserConfig, serverConfig]
+module.exports = [browserConfig, serverConfig];
